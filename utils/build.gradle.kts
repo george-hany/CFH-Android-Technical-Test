@@ -75,4 +75,5 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
+    api("de.hdodenhof:circleimageview:3.1.0")
 }

@@ -71,6 +71,7 @@ android {
     buildFeatures {
         dataBinding = true
         buildConfig = true
+        viewBinding = true
     }
     compileOptions {
         sourceCompatibility = javaVersionNum
@@ -106,6 +107,11 @@ dependencies {
     api("androidx.multidex:multidex:$multidexVersion")
     api("com.google.code.gson:gson:$gsonVersion")
     api("com.google.android.material:material:$materialVersion")
+    implementation("com.google.android.material:material:1.4.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     testImplementation("junit:junit:$junitVersion")
     androidTestImplementation("androidx.test.ext:junit:$junitTestVersion")
     androidTestImplementation("androidx.test.espresso:espresso-core:$espressoVersion")
@@ -124,4 +130,5 @@ dependencies {
     kapt("androidx.hilt:hilt-compiler:$hiltCompilerVersion")
     implementation("com.google.dagger:hilt-android-testing:$hiltVersion")
     androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
+    implementation("com.google.android.gms:play-services-location:21.3.0")
 }

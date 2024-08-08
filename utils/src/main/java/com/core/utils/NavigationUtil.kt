@@ -12,15 +12,14 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import timber.log.Timber
 
-fun navigate(
-    view: View,
+fun NavController.navigateTo(
     id: Int,
-    args: Bundle?,
-    navOptions: NavOptions?,
-    extras: Navigator.Extras?,
+    args: Bundle? = null,
+    navOptions: NavOptions? = null,
+    extras: Navigator.Extras? = null
 ) {
     try {
-        Navigation.findNavController(view).navigate(id, args, navOptions, extras)
+        this.navigate(id, args, navOptions, extras)
     } catch (t: Throwable) {
         Timber.e("Multiple navigation attempts handled. $t")
     }

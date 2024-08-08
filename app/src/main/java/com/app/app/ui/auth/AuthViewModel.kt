@@ -7,7 +7,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel
-    @Inject
-    constructor(
-        repo: AuthRepo,
-    ) : BaseViewModel<AuthRepo>(repo)
+@Inject
+constructor(
+    val repo: AuthRepo,
+) : BaseViewModel<AuthRepo>(repo) {
+    private fun getEmail() = repo.getEmailFromSharedPref()
+
+    fun isUserLoggedIn() = getEmail() != null
+}

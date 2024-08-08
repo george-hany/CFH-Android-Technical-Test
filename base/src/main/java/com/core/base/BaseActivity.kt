@@ -25,7 +25,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
     lateinit var viewDataBinding: T
     private lateinit var mViewModel: V
 
-    private lateinit var navigation: NavController
+    lateinit var navigation: NavController
 
     /**
      * Override for set binding variable

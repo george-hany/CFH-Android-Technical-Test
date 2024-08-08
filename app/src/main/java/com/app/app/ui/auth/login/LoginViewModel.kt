@@ -1,50 +1,49 @@
 package com.app.app.ui.auth.login
 
 import android.view.View
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.app.app.ui.auth.login.model.LoginRequestUIModel
+import com.app.database.users.UserEntity
 import com.core.base.BaseViewModel
-import com.core.data.network.model.ResponseState
+import com.core.utils.*
 import com.core.data.repos.LoginRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel
-    @Inject
-    constructor(val repo: LoginRepo) : BaseViewModel<LoginRepo>(repo) {
-        val data = MutableLiveData<String>()
-        var dataFromStore = MutableLiveData<String>()
-        var homeData = MutableLiveData<String>()
-        var loginMediatorLiveData = MediatorLiveData<Any>()
-
-        init {
-            viewModelScope.launch {
-                repo.getDataFromStore().collect { value -> dataFromStore.value = value }
-                repo.getHomeDataFromStore().collect { value -> homeData.value = value }
-            }
-            getMovies()
-        }
-
-        fun getMovies() {
-            viewModelScope.launch {
-                repo.requestHelpsList().collect {
-                    isLoading.value = it is ResponseState.Loading
-                    when (it) {
-                        is ResponseState.Success -> Timber.tag("getMovies").e("${it.data}")
-                        is ResponseState.Error -> message.value = it.message
-                        is ResponseState.Loading -> isLoading.value = true
-                    }
-                }
-            }
-        }
-
-        fun onSaveClick(v: View) {
-            viewModelScope.launch {
-                repo.saveDataInStore(data = data.value ?: "")
+@Inject
+constructor(val repo: LoginRepo) : BaseViewModel<LoginRepo>(repo) {
+    val loginRequestUIModel = LoginRequestUIModel()
+    val userLoginSuccess = MutableLiveData<Boolean>()
+    fun validate(v: View) {
+        loginRequestUIModel.run {
+            when {
+                email.value.isInputEmpty() -> message.value = R.string.pleaseEnterEmail
+                email.value.isEmailValid().not() -> message.value = R.string.pleaseEnterValidEmail
+                password.value.isInputEmpty() -> message.value = R.string.pleaseEnterPassword
+                else -> login(v)
             }
         }
     }
+
+    private fun login(v: View) {
+        viewModelScope.launch(Dispatchers.IO) {
+            loginRequestUIModel.run {
+                val user = repo.getUserByEmail(email.value ?: "")
+                if (user == null || user.password != password.value)
+                    message.postValue(R.string.wrong_email_or_password)
+                else
+                    saveUserEmail(user)
+            }
+        }
+    }
+
+    private fun saveUserEmail(user: UserEntity) {
+        repo.saveEmailInSharedPref(user.email)
+        userLoginSuccess.postValue(true)
+    }
+}

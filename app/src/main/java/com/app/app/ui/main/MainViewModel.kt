@@ -8,5 +8,9 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel
     @Inject
-    constructor(mainRepo: MainRepo) :
-    BaseViewModel<MainRepo>(mainRepo)
+    constructor(val mainRepo: MainRepo) :
+    BaseViewModel<MainRepo>(mainRepo) {
+    fun clearUserEmail() {
+        mainRepo.saveUserEmail(null)
+    }
+}

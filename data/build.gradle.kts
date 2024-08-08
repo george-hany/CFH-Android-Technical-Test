@@ -31,7 +31,7 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"http://api.themoviedb.org/3/\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.foursquare.com/v2/\"")
         }
         release {
             isMinifyEnabled = false
@@ -39,7 +39,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
-            buildConfigField("String", "BASE_URL", "\"http://api.themoviedb.org/3/\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.foursquare.com/v2/\"")
         }
     }
     compileOptions {
@@ -75,6 +75,7 @@ dependencies {
     api(project(":utils"))
     api(project(":network"))
     api(project(":preference"))
+    api(project(":dataBase"))
     implementation("com.google.code.gson:gson:$gsonVersion")
     testImplementation("junit:junit:$junitVersion")
     androidTestImplementation("androidx.test.ext:junit:$junitTestVersion")

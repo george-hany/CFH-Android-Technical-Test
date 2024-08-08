@@ -12,62 +12,118 @@
             type="com.app.app.ui.auth.login.LoginViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.auth.login.LoginFragment">
+        android:fillViewport="true">
 
-        <androidx.core.widget.ContentLoadingProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{viewModel.isLoading()?View.VISIBLE:View.GONE}"
-            app:layout_constraintEnd_toEndOf="parent"
-            style="?android:attr/progressBarStyle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/ed"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@={viewModel.data}"
-            app:layout_constraintBottom_toTopOf="@+id/button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:context=".ui.login.LoginFragment">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="go to home"
-            app:layout_constraintBottom_toTopOf="@+id/appCompatTextView"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_50sdp"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline2"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toTopOf="@id/top_guideline3"
+                app:srcCompat="@mipmap/ic_launcher_round" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{viewModel::onSaveClick}"
-            android:text="save in data store"
-            app:layout_constraintBottom_toTopOf="@+id/text"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/userName"
+                style="@style/AuthStyle"
+                android:inputType="textEmailAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:hint="@string/email"
+                android:singleLine="true"
+                android:text="@={viewModel.loginRequestUIModel.email}"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline2"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@id/logo" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@{viewModel.dataFromStore}"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
-            app:layout_constraintTop_toBottomOf="@+id/ed" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/password"
+                style="@style/AuthStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:text="@={viewModel.loginRequestUIModel.password}"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline2"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@id/userName" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@{viewModel.homeData}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/appCompatButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:background="@drawable/rounded_color_primary_corner_10"
+                android:foreground="?android:selectableItemBackground"
+                android:onClick="@{viewModel::validate}"
+                android:text="@string/loginText"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline2"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@id/password" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/rounded_stroke_color_accent_corner_10"
+                android:foreground="?android:selectableItemBackground"
+                android:text="@string/register"
+                android:textColor="@color/colorAccent"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/bottom_guideline4"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline2"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatButton"
+                app:layout_constraintVertical_bias="1" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/start_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/top_guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/bottom_guideline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="16dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

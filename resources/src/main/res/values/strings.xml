@@ -3,9 +3,13 @@
     <string name="email_error_txt">You Should enter valid email</string>
     <string name="password_error_txt">You Should enter valid password with 3 characters at least</string>
     <string name="login_txt">SIGN IN</string>
-    <string name="forget_password" >forget password</string>
+    <string name="forget_password">forget password</string>
     <string name="password">Password</string>
-    <string name="user_name">UserName</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="age">Age</string>
+    <string name="email">Email</string>
     <string name="sign_in">Sign In</string>
     <string name="enter_your_email_address">Enter Your Email Address</string>
     <string name="enter_your_password">Enter your password</string>
@@ -13,4 +17,34 @@
     <string name="noInternetConnection">No Internet Connection</string>
     <string name="ok">OK</string>
 
+    <string name="pleaseEnterFirstName">Please enter first name</string>
+    <string name="pleaseEnterLastName">Please enter last name</string>
+    <string name="pleaseEnterYourAge">Please enter your age</string>
+    <string name="ageMustBeOnOrAbove18">Age must be on or above 18</string>
+    <string name="pleaseEnterEmail">Please enter email</string>
+    <string name="pleaseEnterValidEmail">Please enter valid email</string>
+    <string name="pleaseEnterPassword">Please enter your password</string>
+    <string name="pleaseEnterPasswordConfirmation">Please enter your password confirmation</string>
+    <string name="passwordShouldBe8CharactersLong">Password should be 8 characters long with Alphanumeric and Special Characters</string>
+    <string name="passwordNotMatchesConfirmPassword">Password not matches confirm password</string>
+    <string name="registeration">Registration</string>
+    <string name="loginText">Login</string>
+    <string name="register">Register</string>
+    <string name="wrong_email_or_password">Wrong email or password</string>
+    <string name="title_activity_drawer">DrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_terms_and_conditions">Terms and conditions</string>
+    <string name="menu_logout">Logout</string>
+    <string name="user_data_format">%1$s: %2$s</string>
+    <string name="email_is_already_exists">An account with this email already exists. Please use a different email or log in.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

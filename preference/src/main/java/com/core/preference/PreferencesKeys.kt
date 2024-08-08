@@ -11,5 +11,6 @@ class PreferencesKeys {
         val info = stringPreferencesKey(name = "info")
         val userId = stringPreferencesKey(name = "userId")
         val token = stringPreferencesKey(name = "token")
+        val email = stringPreferencesKey(name = "email")
     }
 }
